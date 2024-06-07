@@ -1,0 +1,67 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+
+    <script src="{% static 'app/js/main.js' %}" defer></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <a href="{% url "main_page" %}" class="nav-logo">Views<p style="color: aquamarine;">App.</p></a>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                   {% block search %}{% endblock search %}
+                   {% block search2 %}{% endblock search2 %}
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url "movie_list" %}" class="nav-link">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url "series_list" %}" class="nav-link">Series</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url "logout" %}" class="nav-link">Logout</a>
+                </li>
+
+                
+            
+                {% else %}
+                <li class="nav-item">
+                    <a href="{% url "login" %}" class="nav-link">Login</a>
+                </li>
+                {% endif %}
+                </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+</header>
+    
+
+    {% block content %}
+
+
+
+    
+    
+    
+    {% endblock content %}
+
+
+
+
+
+
+
+{% block js %}{% endblock js %}
+
+{% block style %}{% endblock style %}
+</body>
+</html>
